@@ -56,5 +56,8 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/error/errorPage500_2.jsp</location>
+	</error-page>
 </web-app>

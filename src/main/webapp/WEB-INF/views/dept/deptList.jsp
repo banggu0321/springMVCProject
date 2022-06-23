@@ -33,6 +33,11 @@
 <h1>부서목록</h1>
 <a href="deptInsert.do">신규 부서 등록</a>
 <c:set var="path" value="${pageContext.request.contextPath }" />
+<hr>
+${resultMessage }
+<hr>
+
+
 <br><br>
 <table>
 	<tr>
@@ -57,6 +62,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 		$(function(){
+			var resultMessage = "${resultMessage}";
+			if(resultMessage !== "" ) alert(resultMessage);
 			$(".btnDel").on("click",f);
 		});
 		function f(){
