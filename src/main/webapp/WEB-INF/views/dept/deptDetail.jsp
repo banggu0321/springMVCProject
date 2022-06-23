@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,8 @@ h1{background-color:orange;}
 </head>
 <body>
 <h1>부서 상세보기</h1>
-<form action="../dept/deptUpdate.do" method="post">
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<form action="${path }/dept/deptUpdate.do" method="post">
 	부서번호: ${dept.department_id}<input type="hidden" name="department_id" value="${dept.department_id}"><br>
 	부서이름: <input type="text" name="department_name" value="${dept.department_name }"><br>
 	매니저: <input type="number" name="manager_id" value="${dept.manager_id}"><br>

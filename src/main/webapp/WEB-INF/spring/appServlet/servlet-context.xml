@@ -32,8 +32,15 @@
 	</bean>
 	
 	<!-- @Component @Repository @Service -->
-	<context:component-scan base-package="com.kosta.myapp, net.kosta.controller" /> <!-- 모두스캔 -->
+	<context:component-scan base-package="com.kosta.myapp, net.kosta.controller,org.kosta" /> <!-- 모두스캔 -->
 	
-	
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.ArithmeticException">error/errorPage500</prop>
+				<prop key="java.lang.Exception">error/errorPage500_2</prop>
+			</props>
+		</property>
+	</bean>
 	
 </beans>
