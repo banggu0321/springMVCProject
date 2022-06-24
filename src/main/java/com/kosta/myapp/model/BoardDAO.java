@@ -45,7 +45,7 @@ public class BoardDAO {
 		List<BoardEmpVO> postlist = new ArrayList<>();
 		BoardEmpVO board = null;
 		try {
-			conn = ds.getConnection();
+			conn = ds.getConnection();//CP이용해서 Connection얻기
 			pst = conn.prepareStatement(SQL_BOARDEMP);
 			rs = pst.executeQuery();
 			while(rs.next()) {

@@ -21,10 +21,11 @@
 </style>
 </head>
 <body>
+	<c:set var="path" value ="${pageContext.request.contextPath }" />
 	<h1>게시판목록</h1>
-	<h3>
-		application 정보 얻기 : ${myname}
-	</h3>
+	<p>${resultMessage}</p>
+	
+	
 	<a href="boardInsert.do">게시글 작성하기</a>
 	<br><br>
 	전체건수 : ${boardSize }<br>
