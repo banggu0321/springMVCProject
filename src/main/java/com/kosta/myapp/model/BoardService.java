@@ -13,7 +13,7 @@ import com.kosta.dto.BoardEmpVO;
 public class BoardService {
 	
 	@Autowired
-	private BoardDAO boardDAO;
+	private BoardDAOMybatis boardDAO;
 	
 	//b.bno, b.title, b.content, e.FIRST_NAME ||' '|| e.LAST_NAME fullname
 	public List<BoardEmpVO> selectAllJoin() {
@@ -48,7 +48,7 @@ public class BoardService {
 		return boardDAO.boardUpdate(post);
 	}
 	//DELETE
-	public int boardDelete(int writer_id) {
-		return boardDAO.boardDelete(writer_id);
+	public int boardDelete(int bno) {
+		return boardDAO.boardDelete(bno);
 	}
 }

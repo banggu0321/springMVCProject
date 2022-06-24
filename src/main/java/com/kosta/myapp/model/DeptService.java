@@ -13,7 +13,8 @@ import com.kosta.dto.DeptDTO;
 public class DeptService {
 	
 	@Autowired
-	private DeptDAO deptDAO;
+	private DeptDAOMybatis deptDAO;
+	//private DeptDAO deptDAO;
 
 	//1. 모두 조회 (데이터 전부 조회)
 	public List<DeptDTO> selectAll() {

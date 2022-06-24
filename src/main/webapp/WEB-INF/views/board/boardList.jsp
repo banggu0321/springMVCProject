@@ -10,7 +10,40 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<!--   <link rel="stylesheet" href="../css/common.css"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <c:set var="path" value ="${pageContext.request.contextPath }" />
+	<!--   <link rel="stylesheet" href="../css/common.css"> -->
+<script>
+
+	function call(url, sendData){
+		$.ajax({
+			url:url,
+			data:sendData,
+			type:"get",
+			success:function(responseData){
+				//alert(responseData);
+				$("#here").html(responseData);
+			},
+			fail:function(){}
+		});
+	}
+	//SPA(Single Page Application)
+	$(function(){
+		$("#titleBtn").click(function(){
+			console.log("#tiitleBtn click~"+$("#inputData").val());
+			call("${path}/board/titleSearch.do",{title : $("#inputData").val()});
+		});
+		$("#writerBtn").click(function(){
+			console.log("#writerBtn click~");
+			call("${path}/board/writerSearch.do",{writer : $("#inputData").val()});
+			
+		});
+		$("#dateBtn").click(function(){
+			console.log("#dateBtn click~");
+			call("${path}/board/dateSearch.do",{sdate: $("#sdate").val(), edate : $("#edate").val()});
+		});
+	})
+</script>
 <style>
 	table, td {
 		border:1px solid black;
@@ -21,49 +54,57 @@
 </style>
 </head>
 <body>
-	<c:set var="path" value ="${pageContext.request.contextPath }" />
 	<h1>게시판목록</h1>
 	<p>${resultMessage}</p>
+	<hr>
 	
-	
+	<input type="text" id="inputData">
+	<button id = "titleBtn">title로 조회</button>
+	<button id = "writerBtn">witer로 조회</button>
+	<input type="date" id="sdate">
+	<input type="date" id="edate">
+	<button id = "dateBtn">작성일자로 조회</button>
+	<br><br>
 	<a href="boardInsert.do">게시글 작성하기</a>
 	<br><br>
-	전체건수 : ${boardSize }<br>
-	방법2 : <c:set var="listSize" value="${boardDatas.size() }"></c:set>
-	<table>
-		<tr>
-			<td>순서</td>
-			<td>번호</td>
-			<td>제목</td>
-			<td>내용</td>
-			<td>작성자</td>
-			<td>작성일</td>
-			<td>수정일</td>
-			<td></td>
-		</tr>
-		<c:forEach items="${boardDatas}" var="board" varStatus="rowstatus">
-<%-- 		<c:if test="${rowstatus.first}">
-				<tr class="color1">
-			</c:if>
-			<c:if test="${rowstatus.last }">
-				<tr class="color2">
-			</c:if>
-			<c:if test="${rowstatus.first==false && status.last==false }">
-				<tr>
-			</c:if> --%>
-			<tr class="${rowstatus.count%2==0?'color1':'color2' }">
-				<td>${rowstatus.count }..${listSize-rowstatus.index }</td>
-				<td><a href="boardDetail.do?boardid=${board.bno}">${board.bno}</a></td>
-				<td>${board.title }</td>
-				<td>${board.content }</td>
-				<td>${board.writer }</td>
-				<td>${board.regdate }</td>
-				<td>${board.updatedate }</td>
-				<td><button class="btnDel btn btn-dark"data-bno="${board.bno}">삭제</button></td>
+	전체건수 방법1 : ${boardSize }<br>
+	전체건수 방법2 : <c:set var="listSize" value="${boardDatas.size() }"></c:set>
+	<div id="here">
+		<table>
+			<tr>
+				<td>순서</td>
+				<td>번호</td>
+				<td>제목</td>
+				<td>내용</td>
+				<td>작성자</td>
+				<td>작성일</td>
+				<td>수정일</td>
+				<td></td>
 			</tr>
-		</c:forEach>
-	</table>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+			<c:forEach items="${boardDatas}" var="board" varStatus="rowstatus">
+			<%--<c:if test="${rowstatus.first}">
+					<tr class="color1">
+				</c:if>
+				<c:if test="${rowstatus.last }">
+					<tr class="color2">
+				</c:if>
+				<c:if test="${rowstatus.first==false && status.last==false }">
+					<tr>
+				</c:if> --%>
+				<tr class="${rowstatus.count%2==0?'color1':'color2' }">
+					<td>${rowstatus.count }..${listSize-rowstatus.index }</td>
+					<td><a href="boardDetail.do?boardid=${board.bno}">${board.bno}</a></td>
+					<td>${board.title }</td>
+					<td>${board.content }</td>
+					<td>${board.writer }</td>
+					<td>${board.regdate }</td>
+					<td>${board.updatedate }</td>
+					<td><button class="btnDel btn btn-dark"data-bno="${board.bno}">삭제</button></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+		
 	<script>
 		$(function(){
 			//#:id 아이디는 문서내에서 유일 맨위만 찾음 (id->class로 변경)

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="net.gasan.board">
+	<select id="selectAll" resultType="com.kosta.dto.BoardDTO">
+		SELECT * FROM tbl_board ORDER BY 1 desc
+	</select>
+	<select id="selectById" resultType="boardvo" parameterType="int">
+		SELECT * FROM tbl_board WHERE bno = #{aa}
+	</select>
+	<select id="selectWriter" resultType="boardvo" parameterType="int">
+		SELECT * FROM TBL_BOARD WHERE writer = #{aa}
+	</select>
+	<select id="selectTitle" resultType="boardvo" parameterType="string">
+		SELECT * FROM TBL_BOARD 
+		<if test="aa==''">
+			WHERE title like #{aa}
+		</if>
+		order by 1 desc
+	</select>
+	<select id="selectRegdate" resultType="boardvo" parameterType="map">
+		SELECT * FROM TBL_BOARD WHERE regdate between #{sdate} and  #{edate}
+	</select>
+	<insert id="boardInsert" parameterType="boardvo">
+		INSERT INTO tbl_board (bno, title, content, writer, regdate, updatedate)
+		values(seq_bno.nextval,#{title},#{content},#{writer},sysdate,sysdate)
+	</insert>
+	<update id="boardUpdate" parameterType="boardvo">
+		UPDATE tbl_board 
+		SET title = #{title}, content=#{content}, updatedate = sysdate 
+		WHERE bno = #{bno}
+	</update>
+	<delete id="boardDelete">
+		DELETE FROM tbl_board WHERE bno = #{bno}
+	</delete>
+	<select id="boardEmpInfo" resultType="boardempvo">
+		SELECT b.bno, b.title, b.content, e.FIRST_NAME ||' '|| e.LAST_NAME fullname
+		FROM TBL_BOARD b 
+		JOIN EMPLOYEES e ON (b.writer = e.EMPLOYEE_ID)
+	</select>
+</mapper>

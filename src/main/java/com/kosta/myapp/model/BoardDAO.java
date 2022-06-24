@@ -33,8 +33,8 @@ public class BoardDAO {
 	static final String SQL_SELECT_WRITER = "SELECT * FROM TBL_BOARD WHERE writer =?";
 	static final String SQL_SELECT_TITLE = "SELECT * FROM TBL_BOARD WHERE title=?";
 	static final String SQL_SELECT_REGDATE = "SELECT * FROM TBL_BOARD WHERE regdate between ? and ?";
-	static final String SQL_INSERT = "INSERT INTO tbl_board values(seq_bno.nextval,?,?,?,sysdate,sysdate,null)";
-	//static final String SQL_INSERT = "INSERT INTO tbl_board values(seq_bno.nextval,?,?,?,sysdate,sysdate,?)";
+	//static final String SQL_INSERT = "INSERT INTO tbl_board values(seq_bno.nextval,?,?,?,sysdate,sysdate,null)";
+	static final String SQL_INSERT = "INSERT INTO tbl_board values(seq_bno.nextval,?,?,?,sysdate,sysdate,?)";
 	static final String SQL_UPDATE = "UPDATE tbl_board SET title =?, content=?, updatedate=sysdate WHERE bno=?";
 	static final String SQL_DELETE = "DELETE FROM tbl_board WHERE bno=?";
 	static final String SQL_BOARDEMP = "SELECT b.bno, b.title, b.content, e.FIRST_NAME ||' '|| e.LAST_NAME fullname"
@@ -169,7 +169,7 @@ public class BoardDAO {
 			pst.setString(1, post.getTitle());
 			pst.setString(2, post.getContent());
 			pst.setInt(3, post.getWriter());
-			//pst.setString(4, post.getPic());
+			pst.setString(4, post.getPic());
 
 			result = pst.executeUpdate();
 		} catch (SQLException e) {
@@ -197,12 +197,12 @@ public class BoardDAO {
 		return result;
 	}
 	//DELETE
-	public int boardDelete(int writer_id) {
+	public int boardDelete(int bno) {
 		int result = 0;
 		try {
 			conn = ds.getConnection();
 			pst = conn.prepareStatement(SQL_DELETE);
-			pst.setInt(1, writer_id);
+			pst.setInt(1, bno);
 			result = pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

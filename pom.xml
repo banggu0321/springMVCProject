@@ -14,25 +14,37 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
-	<!-- <repositories>저장소들
-		<repository>
-			<id>Talan Repository</id>
-			<url>http://nexus.talanlabs.com/content/repositories/releases/</url>
-		</repository>
-	</repositories> -->
+	<!-- <repositories>저장소들 <repository> <id>Talan Repository</id> <url>http://nexus.talanlabs.com/content/repositories/releases/</url> 
+		</repository> </repositories> -->
 
 	<dependencies>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.12.2</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.6</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!-- <dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc</artifactId>
-			<version>6</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc</artifactId> 
+			<version>6</version> </dependency> -->
 
 		<!-- Spring -->
 		<dependency>

@@ -75,9 +75,7 @@ public class DeptDAO {
 	//3. 지역코드로 조회(같은 지역인 사람들 모두 조회) locid들어와서 int
 	public List<DeptDTO> selectByLocation(int locid) {
 		List<DeptDTO> deptList = new ArrayList<>();
-		String sql = "select * from departments where location_id = "
-				+ locid
-				+ " order by 1";
+		String sql = "select * from departments where location_id = " + locid + " order by 1";
 		
 		try {
 			conn = ds.getConnection();
