@@ -45,17 +45,17 @@
 		values(#{employee_id},#{first_name},#{last_name},#{job_id},#{email},#{manager_id},#{department_id},#{phone_number},#{salary},#{commission_pct},#{hire_date})
 	</insert>
 	<update id="update" parameterType="com.kosta.dto.EmpVO">
-		update employees (,,,,,,,,,,)
-		set first_name = #{first_name},
-			last_name = #{last_name},
-			job_id = #{job_id},
-			email = #{email},
-			manager_id = #{manager_id},
-			department_id = #{department_id},
-			phone_number = #{phone_number},
-			salary = #{salary},
-			commission_pct = #{commission_pct},
-			hire_date = #{hire_date})
+		update employees
+		set FIRST_NAME = #{first_name},
+			LAST_NAME = #{last_name},
+			JOB_ID = #{job_id},
+			EMAIL = #{email},
+			MANAGER_ID = #{manager_id},
+			DEPARTMENT_ID = #{department_id},
+			PHONE_NUMBER = #{phone_number},
+			SALARY = #{salary},
+			COMMISSION_PCT = #{commission_pct},
+			HIRE_DATE = #{hire_date}
 		where employee_id = #{employee_id}
 	</update>
 	<delete id="delete" parameterType="int">

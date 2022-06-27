@@ -25,8 +25,8 @@
 		SELECT * FROM TBL_BOARD WHERE regdate between #{sdate} and  #{edate}
 	</select>
 	<insert id="boardInsert" parameterType="boardvo">
-		INSERT INTO tbl_board (bno, title, content, writer, regdate, updatedate)
-		values(seq_bno.nextval,#{title},#{content},#{writer},sysdate,sysdate)
+		INSERT INTO tbl_board (bno, title, content, writer, regdate, updatedate, pic)
+		values(seq_bno.nextval,#{title},#{content},#{writer},sysdate,sysdate,#{pic})
 	</insert>
 	<update id="boardUpdate" parameterType="boardvo">
 		UPDATE tbl_board 

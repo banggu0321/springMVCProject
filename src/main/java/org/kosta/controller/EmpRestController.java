@@ -42,15 +42,15 @@ public class EmpRestController {
 		List<EmpVO> emplist = empService.selectAll();
 		return emplist;
 	}
-	@RequestMapping(value="/empDetail.do/{empid}", produces="application/json")
+	@RequestMapping(value="/empdetail.do/{empid}", produces="application/json")
 	public EmpVO empById(@PathVariable int empid) {
 		logger.info("empid= " + empid);
 		EmpVO emp = empService.selectById(empid);
 		return emp;
 	}
-	@RequestMapping(value="/empByManager.do/{empid}", produces="application/json")
-	public List<EmpVO> empByManager(@PathVariable int mid) {
-		logger.info("mid= " + mid);
+	@GetMapping(value = "/empByManager.do/{mid}",    produces = "application/json")
+	public List<EmpVO> empByManager(@PathVariable int mid ) {
+		logger.info("mid = " + mid );
 		List<EmpVO> emplist = empService.selectByManager(mid);
 		return emplist;
 	}

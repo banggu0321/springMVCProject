@@ -105,7 +105,7 @@ public class EmpDAOMybatis {
 	 */
 	//10. delete(특정 직원 1건 employee_id=?)SQL_DELETE
 	public int empDelete(int empid) {
-		int result = session.delete(NAME_SPACE + "delect", empid);
+		int result = session.delete(NAME_SPACE + "delete", empid);
 		logger.info("empDelete 결과 : " + result + "건 삭제");
 		return result;
 	}
