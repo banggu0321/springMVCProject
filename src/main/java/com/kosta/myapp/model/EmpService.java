@@ -1,7 +1,6 @@
 package com.kosta.myapp.model;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,7 @@ import com.kosta.dto.JobVO;
 @Service
 public class EmpService {
 	@Autowired
-	private EmpDAO empDAO;
+	private EmpDAOMybatis empDAO;
 	//1. 모든 직원 조회
 	public List<EmpVO> selectAll() {
 		return empDAO.selectAll();
@@ -22,7 +21,7 @@ public class EmpService {
 		return empDAO.selectJobAll();
 	}
 	//1-2. 모든 manager 조회
-	public Map<Integer,String> selectManagerAll() {
+	public List<EmpVO> selectManagerAll() {
 		return empDAO.selectManagerAll();
 	}
 	//2. 조건조회(특정부서)-department_id
@@ -60,9 +59,11 @@ public class EmpService {
 		return empDAO.empUpdate(emp);
 	}
 	//9. update(조건 department_id=?)
-	public int empUpdateByDept(EmpVO emp, int deptid) {
-		return empDAO.empUpdateByDept(emp, deptid);
-	}
+	/*
+	 * public int empUpdateByDept(EmpVO emp, int deptid) { 
+	 * return empDAO.empUpdateByDept(emp, deptid); 
+	 * }
+	 */
 	//10. delete(특정 직원 1건 employee_id=?)
 	public int empDelete(int empid) {
 		return empDAO.empDelete(empid);
