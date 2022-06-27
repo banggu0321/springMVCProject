@@ -55,7 +55,7 @@
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />
-		<appender-ref ref="daliyFileAppender" />
+		<!-- <appender-ref ref="daliyFileAppender" /> -->
 	</root>
 
 </log4j:configuration>
